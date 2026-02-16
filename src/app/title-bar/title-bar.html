@@ -1,0 +1,19 @@
+<header class="title-bar w-100 p-4 bg-dark text-light d-flex align-items-center gap-4">
+  <span>View: </span>
+  <nav class="menu">
+  <a
+    routerLink="/books"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    Books
+  </a>
+
+  <a
+    routerLink="/quotations"
+    routerLinkActive="active"
+  >
+    Quotations
+  </a>
+</nav>
+</header>
