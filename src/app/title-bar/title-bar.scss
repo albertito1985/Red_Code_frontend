@@ -1,0 +1,13 @@
+.app-nav-btn{
+	border: 1px solid var(--bs-primary);
+	color: var(--bs-primary);
+}
+
+.app-nav-btn:hover,
+.app-nav-btn.active {
+	background-color: var(--bs-primary);
+	border-color: var(--bs-primary);
+	color: var(--bs-dark);
+	text-decoration: underline;
+	font-weight: 700;
+}

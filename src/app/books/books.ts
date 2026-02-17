@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { AddBook } from "../add-book/add-book";
 
 interface BookDto {
   id: number;
@@ -11,7 +12,7 @@ interface BookDto {
 @Component({
   selector: 'app-books',
   templateUrl: './books.html',
-  imports: [RouterModule],
+  imports: [RouterModule, AddBook],
   styleUrl: './books.scss',
 })
 export class Books {

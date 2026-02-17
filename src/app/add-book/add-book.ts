@@ -1,12 +1,16 @@
 import { Component } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faPlus} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'books/add-book',
+  imports: [FontAwesomeModule],
   templateUrl: './add-book.html',
   styleUrl: './add-book.scss',
 })
 export class AddBook {
   isModalOpen: boolean = false;
+  faPlus = faPlus;
 
   openModal(): void {
     this.isModalOpen = true;
