@@ -1,19 +1,30 @@
-<header class="title-bar w-100 p-4 bg-dark text-light d-flex align-items-center gap-4">
-  <span>View: </span>
-  <nav class="menu">
-  <a
-    routerLink="/books"
-    routerLinkActive="active"
-    [routerLinkActiveOptions]="{ exact: true }"
-  >
-    Books
-  </a>
+<header class="title-bar w-100 py-4 bg-dark text-light">
+  <div class="container d-flex align-items-center justify-content-between gap-4">
+    <div class="d-flex flex-row align-items-center gap-2">
+      <span class="text-light fw-bold">View: </span>
+      <nav class="d-flex flex-row gap-2">
+      
+        <a 
+          class="btn btn-outline-primary"
+          routerLink="/books"
+          routerLinkActive="btn-primary text-dark text-decoration-underline fw-bold"
+          [routerLinkActiveOptions]="{ exact: false }"
+        >
+          Books
+        </a>
 
-  <a
-    routerLink="/quotations"
-    routerLinkActive="active"
-  >
-    Quotations
-  </a>
-</nav>
+        <a class="btn btn-outline-primary"
+          routerLink="/quotations"
+          routerLinkActive="btn-primary text-dark text-decoration-underline fw-bold"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          Quotations
+        </a>
+      </nav>
+    </div>
+    <div class="form-check form-switch">
+      <label class="form-check-label" for="flexSwitchCheckDefault">Dark mode</label>
+      <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" [(ngModel)]="isEnabled" (change)="onToggle()">
+    </div>
+</div>
 </header>

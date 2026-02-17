@@ -1,1 +1,21 @@
-<p>books works!</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Author</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (book of booksToDisplay; track book.id) {
+      <tr>
+        <th scope="row">{{ book.id }}</th>
+        <td>{{ book.title }}</td>
+        <td>{{ book.author }}</td>
+      </tr>
+    }
+  </tbody>
+  <div>
+    <a class="btn btn-primary" routerLink="/books/add-book">Add book</a>
+  </div>
+</table>
