@@ -6,8 +6,28 @@ import { Component } from '@angular/core';
   styleUrl: './add-book.scss',
 })
 export class AddBook {
-  onSubmit(event: Event, title: string, author: string): void {
+  isModalOpen: boolean = false;
+
+  openModal(): void {
+    this.isModalOpen = true;
+  }
+
+  closeModal(): void {
+    this.isModalOpen = false;
+  }
+
+  onSubmit(event: Event, titleInput: HTMLInputElement, authorInput: HTMLInputElement): void {
     event.preventDefault();
+    const title = titleInput.value.trim();
+    const author = authorInput.value.trim();
+
+    if (!title || !author) {
+      return;
+    }
+
     console.log('New book submitted:', { title, author });
+    titleInput.value = '';
+    authorInput.value = '';
+    this.closeModal();
   }
 }
