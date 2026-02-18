@@ -12,6 +12,15 @@ ng serve
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
+## Environment configuration
+
+Database settings are defined in:
+
+- `src/environments/environment.development.ts` (used by `ng serve` / development builds)
+- `src/environments/environment.ts` (used by production builds)
+
+Update the `database` object values in these files for your target environment.
+
 ## Code scaffolding
 
 Angular CLI includes powerful code scaffolding tools. To generate a new component, run:

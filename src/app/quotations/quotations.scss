@@ -5,3 +5,17 @@
 .table-fixed {
   table-layout: fixed;
 }
+
+.actions-cell {
+  opacity: 0;
+  cursor: pointer;
+}
+
+tr:hover{
+  background-color: var(--bs-table-bg) !important;
+}
+
+/* Show when row is hovered */
+.quote-row:hover .actions-cell {
+  opacity: 1;
+}

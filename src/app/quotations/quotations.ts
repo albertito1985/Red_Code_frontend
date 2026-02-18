@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
-import { AddQuote } from '../add-quote/add-quote';
+import { Component, OnInit } from '@angular/core';
+import { QuoteForm } from '../quote-form/quote-form';
+import { DatabaseService } from '../services/database.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
 interface QuoteDto {
   id: number;
@@ -10,22 +13,28 @@ interface QuoteDto {
 @Component({
   selector: 'app-quotations',
   templateUrl: './quotations.html',
-  imports: [AddQuote],
+  imports: [QuoteForm, FontAwesomeModule],
   styleUrl: './quotations.scss',
 })
-export class Quotations {
+export class Quotations implements OnInit {
   quotesToDisplay: QuoteDto[] = [];
-
-  quotes: QuoteDto[] = [
-    { id: 1, quotation: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
-    { id: 2, quotation: "Success is not the key to happiness. Happiness is the key to success.", author: "Albert Schweitzer" },
-    { id: 3, quotation: "Don't watch the clock; do what it does. Keep going.", author: "Sam Levenson" },
-    { id: 4, quotation: "The future belongs to those who believe in the beauty of their dreams.", author: "Eleanor Roosevelt" },
-    { id: 5, quotation: "Believe you can and you're halfway there.", author: "Theodore Roosevelt" }
-  ];
+  faTrashCan = faTrashCan;
+  
+  constructor(private readonly databaseService: DatabaseService) {}
 
   ngOnInit() {
-    this.quotesToDisplay = this.quotes;
+    this.loadQuotes();
+  }
+
+  loadQuotes(): void {
+    this.databaseService.getAll<QuoteDto>('quotations').subscribe({
+      next: (quotes) => {
+        this.quotesToDisplay = quotes;
+      },
+      error: (error) => {
+        console.error('Failed to load quotations', error);
+      }
+    });
   }
 
 }

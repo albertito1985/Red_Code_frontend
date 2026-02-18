@@ -1,5 +1,5 @@
-<button type="button" class="btn btn-primary" (click)="openModal()">
-    <fa-icon [icon]="faPlus"></fa-icon>
+<button type="button" [class]="isEditMode ? 'btn text-primary' : 'btn btn-primary'" (click)="openModal()">
+    <fa-icon [icon]="isEditMode ? faPenToSquare : faPlus"></fa-icon>
 </button>
 
 <div
@@ -14,24 +14,24 @@
   <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add Quote</h5>
+                <h5 class="modal-title">{{ isEditMode ? 'Edit Quote' : 'Add Quote' }}</h5>
                 <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
             </div>
-            <form class="d-flex flex-column gap-3" (submit)="onSubmit($event, quoteInput, authorInput)">
+            <form class="d-flex flex-column gap-3" (submit)="onSubmit($event)">
                 <div class="modal-body gap-3 d-flex flex-column">
                     <span>
                         <label for="quoteText" class="form-label">Quotation</label>
-                        <input id="quoteText" #quoteInput type="text" class="form-control" name="quotation" required>
+                        <input id="quoteText" type="text" class="form-control" name="quotation" [(ngModel)]="quotation" required>
                     </span>
                     <span>
                         <label for="quoteAuthor" class="form-label">Author</label>
-                        <input id="quoteAuthor" #authorInput type="text" class="form-control" name="author" required>
+                        <input id="quoteAuthor" type="text" class="form-control" name="author" [(ngModel)]="author" required>
                     </span>
                 </div>
 
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">{{ isEditMode ? 'Update' : 'Submit' }}</button>
                 </div>
             </form>
             </div>

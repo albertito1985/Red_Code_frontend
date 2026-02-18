@@ -3,25 +3,34 @@
     <col class="col-1">
     <col class="col-7">
     <col class="col-4">
+    <col class="col-3">
   </colgroup>
   <thead>
     <tr>
       <th scope="col">#</th>
       <th scope="col">Quotation</th>
       <th scope="col">Author</th>
+      <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
     @for (quotes of quotesToDisplay; track quotes.id) {
-      <tr>
+      <tr class="quote-row">
         <th scope="row">{{ quotes.id }}</th>
         <td>{{ quotes.quotation }}</td>
         <td>{{ quotes.author }}</td>
+        <td class="actions-cell">
+          <!-- Aquí me quedé -->
+          <div class="d-flex h-100 align-items-center justify-content-start gap-2">
+            <quote-form [quoteToEdit]="quotes" (quoteSaved)="loadQuotes()"></quote-form>
+            <button class="btn text-danger"><fa-icon [icon]="faTrashCan"></fa-icon></button>
+          </div>
+        </td>
       </tr>
     }
   </tbody>
   
 </table>
 <div class="container p-0 d-flex flex-row justify-content-end">
-  <add-quote></add-quote>
+  <quote-form (quoteSaved)="loadQuotes()"></quote-form>
 </div>
