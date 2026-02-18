@@ -1,11 +1,11 @@
 <header>
-<nav class="navbar navbar-expand-md navbar-dark bg-dark p-3">
+<nav class="navbar navbar-expand-md bg-body-tertiary border-bottom p-3">
   <button class="navbar-toggler border-0 ms-auto" type="button" (click)="toggleMenu()" aria-controls="navbarToggler" [attr.aria-expanded]="isMenuOpen" aria-label="Toggle navigation">
-    <fa-icon class="text-light" [icon]="faEllipsisVertical"></fa-icon>
+    <fa-icon class="text-body-emphasis" [icon]="faEllipsisVertical"></fa-icon>
   </button>
   <div class="collapse navbar-collapse flex-column align-items-start justify-content-between gap-3 flex-md-row align-items-md-center gap-md-0" id="navbarToggler" [class.show]="isMenuOpen">
     <div class="d-flex flex-column gap-1 align-items-start flex-md-row gap-md-3 align-items-md-center">
-      <span class="text-light fw-bold navbar-text text-center" >View: </span>
+      <span class="fw-bold navbar-text text-center" >View: </span>
       <ul class="navbar-nav d-flex flex-column flex-md-row gap-3 w-100 w-md-auto">
         <li class="nav-item active">
           <a 
@@ -32,8 +32,8 @@
     </div>
     
     <div class="d-flex flex-column gap-1 align-items-start flex-md-row align-items-md-center gap-md-3 pt-3 pt-md-0">
-      <span class="text-light fw-bold navbar-text text-center d-md-none">
-        <fa-icon class="text-light" [icon]="faCircleHalfStroke"></fa-icon>
+      <span class="fw-bold navbar-text text-center d-md-none">
+        <fa-icon class="text-body-emphasis" [icon]="faCircleHalfStroke"></fa-icon>
         Theme:
       </span>
       <div class="navbar-nav d-flex flex-column flex-md-row gap-3 w-100 w-md-auto d-md-none">
@@ -47,7 +47,7 @@
 
       <div class="form-switch mt-0 form-check-reverse d-none d-md-flex flex-md-row gap-2">
         <label class="form-check-label" for="themeSwitchMd">
-          <fa-icon class="text-light" [icon]="faCircleHalfStroke"></fa-icon>
+          <fa-icon class="text-body-emphasis" [icon]="faCircleHalfStroke"></fa-icon>
         </label>
         <input class="form-check-input" type="checkbox" id="themeSwitchMd" [checked]="isEnabled" (change)="onThemeSwitchChange($event)">
       </div>

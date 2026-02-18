@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { RouterLinkActive } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -11,20 +11,27 @@ import { faBook, faQuoteLeft, faCircleHalfStroke, faEllipsisVertical} from '@for
   templateUrl: './title-bar.html',
   styleUrl: './title-bar.scss'
 })
-export class TitleBarComponent {
-  isEnabled: boolean = false; // initial state
+export class TitleBarComponent implements OnInit {
+  isEnabled: boolean = false;
   isMenuOpen: boolean = false;
   faBook = faBook;
   faQuotes = faQuoteLeft;
   faCircleHalfStroke = faCircleHalfStroke;
   faEllipsisVertical = faEllipsisVertical;
+
+  ngOnInit(): void {
+    const currentTheme = document.documentElement.getAttribute('data-bs-theme') ?? document.body.getAttribute('data-bs-theme');
+    this.isEnabled = currentTheme === 'dark';
+    this.applyTheme();
+  }
+
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
   setDarkMode(isDarkModeEnabled: boolean): void {
     this.isEnabled = isDarkModeEnabled;
-    this.onToggle();
+    this.applyTheme();
   }
 
   onThemeSwitchChange(event: Event): void {
@@ -32,8 +39,7 @@ export class TitleBarComponent {
     this.setDarkMode(input.checked);
   }
 
-  onToggle() {
-    console.log('Switch state:', this.isEnabled);
+  private applyTheme(): void {
     if (this.isEnabled) {
       this.enableDarkMode();
     } else {
@@ -41,13 +47,13 @@ export class TitleBarComponent {
     }
   }
 
-  enableDarkMode() {
-    console.log('Dark mode enabled');
+  private enableDarkMode(): void {
+    document.documentElement.setAttribute('data-bs-theme', 'dark');
     document.body.setAttribute('data-bs-theme', 'dark');
   }
 
-  disableDarkMode() {
-    console.log('Dark mode disabled');
+  private disableDarkMode(): void {
+    document.documentElement.setAttribute('data-bs-theme', 'light');
     document.body.setAttribute('data-bs-theme', 'light');
   }
 }
