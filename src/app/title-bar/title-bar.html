@@ -1,34 +1,58 @@
-<header class="title-bar w-100 py-4 bg-dark text-light">
-  <div class="container d-flex align-items-center justify-content-between gap-4">
-    <div class="d-flex flex-row align-items-center gap-2">
-      <span class="text-light fw-bold">View: </span>
-      <nav class="d-flex flex-row gap-2">
-      
-        <a 
-          class="btn app-nav-btn"
-          routerLink="/books"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: false }"
-        >
-        <fa-icon [icon]="faBook"></fa-icon>
-          Books
-        </a>
+<header>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark p-3">
+  <button class="navbar-toggler border-0 ms-auto" type="button" (click)="toggleMenu()" aria-controls="navbarToggler" [attr.aria-expanded]="isMenuOpen" aria-label="Toggle navigation">
+    <fa-icon class="text-light" [icon]="faEllipsisVertical"></fa-icon>
+  </button>
+  <div class="collapse navbar-collapse flex-column align-items-start justify-content-between gap-3 flex-md-row align-items-md-center gap-md-0" id="navbarToggler" [class.show]="isMenuOpen">
+    <div class="d-flex flex-column gap-1 align-items-start flex-md-row gap-md-3 align-items-md-center">
+      <span class="text-light fw-bold navbar-text text-center" >View: </span>
+      <ul class="navbar-nav d-flex flex-column flex-md-row gap-3 w-100 w-md-auto">
+        <li class="nav-item active">
+          <a 
+            class="btn app-nav-btn"
+            routerLink="/books"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: false }"
+          >
+          <fa-icon [icon]="faBook"></fa-icon>
+            Books
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="btn app-nav-btn"
+            routerLink="/quotations"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: false }"
+          >
+          <fa-icon [icon]="faQuotes"></fa-icon>
+            Quotations
+          </a>
+        </li>
+      </ul>
+    </div>
+    
+    <div class="d-flex flex-column gap-1 align-items-start flex-md-row align-items-md-center gap-md-3 pt-3 pt-md-0">
+      <span class="text-light fw-bold navbar-text text-center d-md-none">
+        <fa-icon class="text-light" [icon]="faCircleHalfStroke"></fa-icon>
+        Theme:
+      </span>
+      <div class="navbar-nav d-flex flex-column flex-md-row gap-3 w-100 w-md-auto d-md-none">
+        <button type="button" class="btn app-nav-btn" [class.active]="!isEnabled" (click)="setDarkMode(false)">
+          Light
+        </button>
+        <button type="button" class="btn app-nav-btn" [class.active]="isEnabled" (click)="setDarkMode(true)">
+          Dark
+        </button>
+      </div>
 
-        <a class="btn app-nav-btn"
-          routerLink="/quotations"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
-        >
-        <fa-icon [icon]="faQuotes"></fa-icon>
-          Quotations
-        </a>
-      </nav>
+      <div class="form-switch mt-0 form-check-reverse d-none d-md-flex flex-md-row gap-2">
+        <label class="form-check-label" for="themeSwitchMd">
+          <fa-icon class="text-light" [icon]="faCircleHalfStroke"></fa-icon>
+        </label>
+        <input class="form-check-input" type="checkbox" id="themeSwitchMd" [checked]="isEnabled" (change)="onThemeSwitchChange($event)">
+      </div>
     </div>
-    <div class="form-check form-switch">
-      <label class="form-check-label" for="flexSwitchCheckDefault">
-        <fa-icon [icon]="faCircleHalfStroke"></fa-icon>
-      </label>
-      <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" [(ngModel)]="isEnabled" (change)="onToggle()">
-    </div>
-</div>
+
+  </div>
+</nav>
 </header>
