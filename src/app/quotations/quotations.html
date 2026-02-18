@@ -1,1 +1,27 @@
-<p>quotations works!</p>
+<table class="table w-100 table-fixed">
+    <colgroup>
+    <col class="col-1">
+    <col class="col-7">
+    <col class="col-4">
+  </colgroup>
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Quotation</th>
+      <th scope="col">Author</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (quotes of quotesToDisplay; track quotes.id) {
+      <tr>
+        <th scope="row">{{ quotes.id }}</th>
+        <td>{{ quotes.quotation }}</td>
+        <td>{{ quotes.author }}</td>
+      </tr>
+    }
+  </tbody>
+  
+</table>
+<div class="container p-0 d-flex flex-row justify-content-end">
+  <add-quote></add-quote>
+</div>

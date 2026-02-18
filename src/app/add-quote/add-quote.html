@@ -14,18 +14,18 @@
   <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add Book</h5>
+                <h5 class="modal-title">Add Quote</h5>
                 <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
             </div>
-            <form class="d-flex flex-column gap-3" (submit)="onSubmit($event, titleInput, authorInput)">
+            <form class="d-flex flex-column gap-3" (submit)="onSubmit($event, quoteInput, authorInput)">
                 <div class="modal-body gap-3 d-flex flex-column">
                     <span>
-                        <label for="bookTitle" class="form-label">Title</label>
-                        <input id="bookTitle" #titleInput type="text" class="form-control" name="title" required>
+                        <label for="quoteText" class="form-label">Quotation</label>
+                        <input id="quoteText" #quoteInput type="text" class="form-control" name="quotation" required>
                     </span>
                     <span>
-                        <label for="bookAuthor" class="form-label">Author</label>
-                        <input id="bookAuthor" #authorInput type="text" class="form-control" name="author" required>
+                        <label for="quoteAuthor" class="form-label">Author</label>
+                        <input id="quoteAuthor" #authorInput type="text" class="form-control" name="author" required>
                     </span>
                 </div>
 
