@@ -14,15 +14,15 @@
     </tr>
   </thead>
   <tbody>
-    @for (book of booksToDisplay; track book.id) {
-      <tr>
-        <th scope="row">{{ book.id }}</th>
+    @for (book of booksToDisplay; track book.id; let index = $index) {
+      <tr class="book-row">
+        <th scope="row">{{ index + 1 }}</th>
         <td>{{ book.title }}</td>
         <td>{{ book.author }}</td>
         <td class="actions-cell">
           <div class="d-flex h-100 align-items-center justify-content-start gap-2">
             <book-form [bookToEdit]="book" (bookSaved)="loadBooks()"></book-form>
-            <delete-item [itemId]="book.id" (itemDeleted)="loadBooks()"></delete-item>
+            <delete-item [itemId]="book.id" [resource]="'books'" (itemDeleted)="loadBooks()"></delete-item>
           </div>
         </td>
       </tr>

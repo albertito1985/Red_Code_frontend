@@ -1,3 +1,17 @@
 .table{
     --bs-table-bg: none !important;
 }
+
+.actions-cell {
+  opacity: 0;
+  cursor: pointer;
+}
+
+tr:hover{
+  background-color: var(--bs-table-bg) !important;
+}
+
+/* Show when row is hovered */
+.book-row:hover .actions-cell {
+  opacity: 1;
+}

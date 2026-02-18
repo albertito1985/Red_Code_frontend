@@ -22,7 +22,7 @@
         <td class="actions-cell">
           <div class="d-flex h-100 align-items-center justify-content-start gap-2">
             <quote-form [quoteToEdit]="quotes" (quoteSaved)="loadQuotes()"></quote-form>
-            <delete-item [itemId]="quotes.id" (itemDeleted)="loadQuotes()"></delete-item>
+            <delete-item [itemId]="quotes.id" [resource]="'quotations'" (itemDeleted)="loadQuotes()"></delete-item>
           </div>
         </td>
       </tr>

@@ -14,6 +14,7 @@ export class DeleteItem {
   faTrashCan = faTrashCan;
 
   @Input({ required: true }) itemId!: number;
+  @Input({ required: true }) resource!: 'books' | 'quotations';
   @Output() itemDeleted = new EventEmitter<void>();
 
   constructor(private readonly databaseService: DatabaseService) {}
@@ -27,13 +28,13 @@ export class DeleteItem {
   }
 
   onDelete(): void {
-    this.databaseService.remove('quotations', this.itemId).subscribe({
+    this.databaseService.remove(this.resource, this.itemId).subscribe({
       next: () => {
         this.itemDeleted.emit();
         this.closeModal();
       },
       error: (error) => {
-        console.error('Failed to delete quote', error);
+        console.error(`Failed to delete item from ${this.resource}`, error);
       }
     });
   }
