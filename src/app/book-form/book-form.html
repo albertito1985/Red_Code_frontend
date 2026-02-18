@@ -1,5 +1,5 @@
-<button type="button" class="btn btn-primary" (click)="openModal()">
-    <fa-icon [icon]="faPlus"></fa-icon>
+<button type="button" [class]="isEditMode ? 'btn text-primary' : 'btn btn-primary'" (click)="openModal()">
+    <fa-icon [icon]="isEditMode ? faPenToSquare : faPlus"></fa-icon>
 </button>
 
 <div
@@ -14,24 +14,24 @@
   <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add Book</h5>
+                <h5 class="modal-title">{{ isEditMode ? 'Edit Book' : 'Add Book' }}</h5>
                 <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
             </div>
-            <form class="d-flex flex-column gap-3" (submit)="onSubmit($event, titleInput, authorInput)">
+            <form class="d-flex flex-column gap-3" (submit)="onSubmit($event)">
                 <div class="modal-body gap-3 d-flex flex-column">
                     <span>
                         <label for="bookTitle" class="form-label">Title</label>
-                        <input id="bookTitle" #titleInput type="text" class="form-control" name="title" required>
+                        <input id="bookTitle" type="text" class="form-control" name="title" [(ngModel)]="title" required>
                     </span>
                     <span>
                         <label for="bookAuthor" class="form-label">Author</label>
-                        <input id="bookAuthor" #authorInput type="text" class="form-control" name="author" required>
+                        <input id="bookAuthor" type="text" class="form-control" name="author" [(ngModel)]="author" required>
                     </span>
                 </div>
 
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">{{ isEditMode ? 'Update' : 'Submit' }}</button>
                 </div>
             </form>
             </div>

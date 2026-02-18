@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { AddBook } from "../add-book/add-book";
+import { BookForm } from '../book-form/book-form';
+import { DeleteItem } from '../delete-item/delete-item';
+import { DatabaseService } from '../services/database.service';
 
 interface BookDto {
   id: number;
@@ -12,23 +14,28 @@ interface BookDto {
 @Component({
   selector: 'app-books',
   templateUrl: './books.html',
-  imports: [RouterModule, AddBook],
+  imports: [RouterModule, BookForm, DeleteItem],
   styleUrl: './books.scss',
 })
-export class Books {
+export class Books implements OnInit {
 
   booksToDisplay: BookDto[] = [];
 
-  books: BookDto[] = [
-    { id: 1, title: "To Kill a Mockingbird", author: "Harper Lee" },
-    { id: 2, title: "1984", author: "George Orwell" },
-    { id: 3, title: "The Great Gatsby", author: "F. Scott Fitzgerald" },
-    { id: 4, title: "Pride and Prejudice", author: "Jane Austen" },
-    { id: 5, title: "Moby-Dick", author: "Herman Melville" },
-  ];
+  constructor(private readonly databaseService: DatabaseService) {}
 
   ngOnInit() {
-    this.booksToDisplay = this.books;
+    this.loadBooks();
+  }
+
+  loadBooks(): void {
+    this.databaseService.getAll<BookDto>('books').subscribe({
+      next: (books) => {
+        this.booksToDisplay = books;
+      },
+      error: (error) => {
+        console.error('Failed to load books', error);
+      }
+    });
   }
   
 }

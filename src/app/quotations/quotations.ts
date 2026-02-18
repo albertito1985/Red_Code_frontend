@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QuoteForm } from '../quote-form/quote-form';
+import { DeleteItem } from '../delete-item/delete-item';
 import { DatabaseService } from '../services/database.service';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
 interface QuoteDto {
   id: number;
@@ -13,12 +12,11 @@ interface QuoteDto {
 @Component({
   selector: 'app-quotations',
   templateUrl: './quotations.html',
-  imports: [QuoteForm, FontAwesomeModule],
+  imports: [QuoteForm, DeleteItem],
   styleUrl: './quotations.scss',
 })
 export class Quotations implements OnInit {
   quotesToDisplay: QuoteDto[] = [];
-  faTrashCan = faTrashCan;
   
   constructor(private readonly databaseService: DatabaseService) {}
 

@@ -2,8 +2,8 @@
     <colgroup>
     <col class="col-1">
     <col class="col-7">
-    <col class="col-4">
     <col class="col-3">
+    <col class="col-2">
   </colgroup>
   <thead>
     <tr>
@@ -14,16 +14,15 @@
     </tr>
   </thead>
   <tbody>
-    @for (quotes of quotesToDisplay; track quotes.id) {
+    @for (quotes of quotesToDisplay; track quotes.id; let index = $index) {
       <tr class="quote-row">
-        <th scope="row">{{ quotes.id }}</th>
+        <th scope="row">{{ index + 1 }}</th>
         <td>{{ quotes.quotation }}</td>
         <td>{{ quotes.author }}</td>
         <td class="actions-cell">
-          <!-- Aquí me quedé -->
           <div class="d-flex h-100 align-items-center justify-content-start gap-2">
             <quote-form [quoteToEdit]="quotes" (quoteSaved)="loadQuotes()"></quote-form>
-            <button class="btn text-danger"><fa-icon [icon]="faTrashCan"></fa-icon></button>
+            <delete-item [itemId]="quotes.id" (itemDeleted)="loadQuotes()"></delete-item>
           </div>
         </td>
       </tr>
