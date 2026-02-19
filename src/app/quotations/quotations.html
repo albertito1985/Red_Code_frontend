@@ -1,4 +1,4 @@
-<table class="table w-100 table-fixed">
+<table class="table w-100 table-fixed d-none d-md-table">
     <colgroup>
     <col class="col-1">
     <col class="col-7">
@@ -30,6 +30,12 @@
   </tbody>
   
 </table>
-<div class="container p-0 d-flex flex-row justify-content-end">
-  <quote-form (quoteSaved)="loadQuotes()"></quote-form>
+<div class="container w-100 p-0 py-3 py-md-0 d-md-flex flex-md-row justify-content-md-end">
+  <quote-form class="w-md-100" (quoteSaved)="loadQuotes()"></quote-form>
+</div>
+
+<div class="d-md-none d-flex flex-column gap-3">
+  @for (quotes of quotesToDisplay; track quotes.id; let index = $index) {
+    <app-card [index]="index" [item]="quotes" (itemSaved)="loadQuotes()" (itemDeleted)="loadQuotes()"></app-card>
+  }
 </div>

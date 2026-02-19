@@ -1,4 +1,4 @@
-<button type="button" [class]="isEditMode ? 'btn text-primary' : 'btn btn-primary d-flex flex-row gap-2'" (click)="openModal()">
+<button type="button" [class]="isEditMode ? 'btn text-primary' : 'btn btn-primary d-flex flex-row align-items-center justify-content-center gap-2 w-100 w-md-auto'" (click)="openModal()">
     <fa-icon [icon]="isEditMode ? faPenToSquare : faPlus"></fa-icon>
     @if (!isEditMode) {
            <span class="d-inline d-md-none">Add quote</span> 

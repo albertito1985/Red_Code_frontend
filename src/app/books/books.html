@@ -36,19 +36,6 @@
 
 <div class="d-md-none d-flex flex-column gap-3">
   @for (book of booksToDisplay; track book.id; let index = $index) {
-      <div class="book-card d-flex flex-row gap-2 rounded p-3">
-        <div class="h-100% d-flex align-items-center justify-content-center p-3">{{ index + 1 }}</div>
-        <div>
-          <h2>{{ book.title }}</h2>
-          <div class="d-flex align-items-center justify-content-between gap-2">
-            {{ book.author }}
-            <div>
-              <book-form [bookToEdit]="book" (bookSaved)="loadBooks()"></book-form>
-              <delete-item [itemId]="book.id" [resource]="'books'" (itemDeleted)="loadBooks()"></delete-item>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    }
+    <app-card [index]="index" [item]="book" (itemSaved)="loadBooks()" (itemDeleted)="loadBooks()"></app-card>
+  }
 </div>

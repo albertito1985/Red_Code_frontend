@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { BookForm } from '../book-form/book-form';
 import { DeleteItem } from '../delete-item/delete-item';
+import { CardComponent } from '../card/card';
 import { DatabaseService } from '../services/database.service';
 
 interface BookDto {
@@ -14,7 +15,7 @@ interface BookDto {
 @Component({
   selector: 'app-books',
   templateUrl: './books.html',
-  imports: [RouterModule, BookForm, DeleteItem],
+  imports: [RouterModule, BookForm, DeleteItem, CardComponent],
   styleUrl: './books.scss',
 })
 export class Books implements OnInit {
@@ -30,7 +31,7 @@ export class Books implements OnInit {
   loadBooks(): void {
     this.databaseService.getAll<BookDto>('books').subscribe({
       next: (books) => {
-        this.booksToDisplay = books;
+        this.booksToDisplay = [...books].reverse();
       },
       error: (error) => {
         console.error('Failed to load books', error);

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QuoteForm } from '../quote-form/quote-form';
 import { DeleteItem } from '../delete-item/delete-item';
+import { CardComponent } from '../card/card';
 import { DatabaseService } from '../services/database.service';
 
 interface QuoteDto {
@@ -12,7 +13,7 @@ interface QuoteDto {
 @Component({
   selector: 'app-quotations',
   templateUrl: './quotations.html',
-  imports: [QuoteForm, DeleteItem],
+  imports: [QuoteForm, DeleteItem, CardComponent],
   styleUrl: './quotations.scss',
 })
 export class Quotations implements OnInit {
@@ -27,7 +28,7 @@ export class Quotations implements OnInit {
   loadQuotes(): void {
     this.databaseService.getAll<QuoteDto>('quotations').subscribe({
       next: (quotes) => {
-        this.quotesToDisplay = quotes;
+        this.quotesToDisplay = [...quotes].reverse();
       },
       error: (error) => {
         console.error('Failed to load quotations', error);
