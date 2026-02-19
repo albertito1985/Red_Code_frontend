@@ -1,3 +1,7 @@
+.book-card{
+  background-color: var(--bs-secondary-bg);
+}
+
 .table{
     --bs-table-bg: none !important;
 }
@@ -15,3 +19,4 @@ tr:hover{
 .book-row:hover .actions-cell {
   opacity: 1;
 }
+

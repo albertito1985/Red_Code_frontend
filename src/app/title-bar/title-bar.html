@@ -1,8 +1,10 @@
 <header>
-<nav class="navbar navbar-expand-md bg-body-tertiary border-bottom p-3">
+<nav class="navbar navbar-expand-md bg-body-secondary border-bottom p-3">
+  <!-- Button for toggling the menu on smaller screens -->
   <button class="navbar-toggler border-0 ms-auto" type="button" (click)="toggleMenu()" aria-controls="navbarToggler" [attr.aria-expanded]="isMenuOpen" aria-label="Toggle navigation">
     <fa-icon class="text-body-emphasis" [icon]="faEllipsisVertical"></fa-icon>
   </button>
+  <!-- Menu for Changing state between books and quotations -->
   <div class="collapse navbar-collapse flex-column align-items-start justify-content-between gap-3 flex-md-row align-items-md-center gap-md-0" id="navbarToggler" [class.show]="isMenuOpen">
     <div class="d-flex flex-column gap-1 align-items-start flex-md-row gap-md-3 align-items-md-center">
       <span class="fw-bold navbar-text text-center" >View: </span>
@@ -30,7 +32,7 @@
         </li>
       </ul>
     </div>
-    
+    <!-- Menu for Changing state between dark and light themes -->
     <div class="d-flex flex-column gap-1 align-items-start flex-md-row align-items-md-center gap-md-3 pt-3 pt-md-0">
       <span class="fw-bold navbar-text text-center d-md-none">
         <fa-icon class="text-body-emphasis" [icon]="faCircleHalfStroke"></fa-icon>

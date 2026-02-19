@@ -1,4 +1,4 @@
-<table class="table w-100 table-fixed">
+<table class="table w-100 table-fixed d-none d-md-table">
     <colgroup>
     <col class="col-1">
     <col class="col-7">
@@ -30,6 +30,25 @@
   </tbody>
   
 </table>
-<div class="container p-0 d-flex flex-row justify-content-end">
-  <book-form (bookSaved)="loadBooks()"></book-form>
+<div class="container w-100 p-0 py-3 py-md-0 d-md-flex flex-md-row justify-content-md-end">
+  <book-form class="w-md-100" (bookSaved)="loadBooks()"></book-form>
+</div>
+
+<div class="d-md-none d-flex flex-column gap-3">
+  @for (book of booksToDisplay; track book.id; let index = $index) {
+      <div class="book-card d-flex flex-row gap-2 rounded p-3">
+        <div class="h-100% d-flex align-items-center justify-content-center p-3">{{ index + 1 }}</div>
+        <div>
+          <h2>{{ book.title }}</h2>
+          <div class="d-flex align-items-center justify-content-between gap-2">
+            {{ book.author }}
+            <div>
+              <book-form [bookToEdit]="book" (bookSaved)="loadBooks()"></book-form>
+              <delete-item [itemId]="book.id" [resource]="'books'" (itemDeleted)="loadBooks()"></delete-item>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    }
 </div>

@@ -1,9 +1,10 @@
 .app-nav-btn{
-	border: 1px solid var(--bs-border-color);
+	border: 1px solid var(--app-border-color-strong);
 	color: var(--bs-body-color);
 	width:100%;
 	min-width:150px;
 }
+
 .app-nav-btn:hover{
 	border: 1px solid var(--bs-primary);
 	color: var(--bs-primary);
@@ -15,4 +16,10 @@
 	color: var(--bs-white);
 	text-decoration: underline;
 	font-weight: 700;
+}
+
+header {
+	position: sticky;
+	top: 0;
+	z-index: 1030;
 }
