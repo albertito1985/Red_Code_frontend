@@ -13,6 +13,10 @@ export class App {
   protected readonly title = signal('red-code-frontend');
   protected readonly currentPage = signal('Books');
 
+  protected isAuthPage(): boolean {
+    return this.currentPage() === 'Login' || this.currentPage() === 'Register';
+  }
+
   constructor(private readonly router: Router, private readonly activatedRoute: ActivatedRoute) {
     this.router.events
       .pipe(

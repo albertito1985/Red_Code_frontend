@@ -1,6 +1,10 @@
-<app-title-bar></app-title-bar>
-<div class="container mt-4">
-    <h1>My {{ currentPage() }}</h1>
-    <router-outlet /> 
-</div>
+@if (isAuthPage()) {
+    <router-outlet />
+} @else {
+    <app-title-bar></app-title-bar>
+    <div class="container mt-4">
+        <h1>{{currentPage() === 'Books' || currentPage() === 'Quotations'? 'My ' + currentPage() : ''}}</h1>
+        <router-outlet />
+    </div>
+}
 

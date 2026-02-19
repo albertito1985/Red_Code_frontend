@@ -3,11 +3,9 @@ import { RouterModule } from '@angular/router';
 import { RouterLinkActive } from '@angular/router';
 
 @Component({
-  selector: 'app-log-in',
+  selector: 'app-register',
   imports: [RouterModule, RouterLinkActive],
-  templateUrl: './log-in.html',
-  styleUrl: './log-in.scss',
+  templateUrl: './register.html',
+  styleUrl: './register.scss',
 })
-export class LogIn {
-
-}
+export class Register {}
