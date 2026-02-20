@@ -2,7 +2,7 @@
     <router-outlet />
 } @else {
     <div class="app-container d-flex flex-column min-vh-100 justify-content-between">
-        <div>
+        <div class="pb-3">
             <app-title-bar></app-title-bar>
             <div class="container pt-4" >
                 <h1>{{currentPage() === 'Books' || currentPage() === 'Quotations'? 'My ' + currentPage() : ''}}</h1>

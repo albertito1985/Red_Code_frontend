@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { DatabaseService } from './database.service';
 
@@ -31,7 +32,10 @@ export class AuthorizationService {
   private readonly tokenStorageKey = 'auth_token';
   private readonly refreshTokenStorageKey = 'auth_refresh_token';
 
-  constructor(private readonly databaseService: DatabaseService) {}
+  constructor(
+    private readonly databaseService: DatabaseService,
+    private readonly router: Router
+  ) {}
 
   login(payload: LoginPayload): Observable<AuthorizationResponseDto> {
     return this.databaseService.create<AuthorizationResponseDto>(this.loginResource, payload).pipe(
@@ -48,6 +52,11 @@ export class AuthorizationService {
   logout(): void {
     localStorage.removeItem(this.tokenStorageKey);
     localStorage.removeItem(this.refreshTokenStorageKey);
+  }
+
+  logoutAndRedirect(): void {
+    this.logout();
+    this.router.navigate(['/login']);
   }
 
   isAuthenticated(): boolean {

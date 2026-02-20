@@ -35,7 +35,7 @@
     <!-- Menu for Changing state between dark and light themes -->
     <div class="d-flex flex-column gap-1 align-items-start flex-md-row align-items-md-center gap-md-3 pt-3 pt-md-0">
       <span class="fw-bold navbar-text text-center d-md-none">
-        <fa-icon class="text-body-emphasis" [icon]="faCircleHalfStroke"></fa-icon>
+        <fa-icon class="text-body-emphasis d-none d-md-inline" [icon]="faCircleHalfStroke"></fa-icon>
         Theme:
       </span>
       <div class="navbar-nav d-flex flex-column flex-md-row gap-3 w-100 w-md-auto d-md-none">
@@ -53,6 +53,9 @@
         </label>
         <input class="form-check-input" type="checkbox" id="themeSwitchMd" [checked]="isEnabled" (change)="onThemeSwitchChange($event)">
       </div>
+    </div>
+    <div class="d-md-none w-100 d-flex justify-content-center mt-3">
+      <a href="#" class="link" (click)="onLogout($event)">Log out</a>
     </div>
 
   </div>

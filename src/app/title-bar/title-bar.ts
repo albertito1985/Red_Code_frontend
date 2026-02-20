@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { RouterLinkActive } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBook, faQuoteLeft, faCircleHalfStroke, faEllipsisVertical} from '@fortawesome/free-solid-svg-icons';
+import { AuthorizationService } from '../services/authorization.service';
 
 @Component({
   selector: 'app-title-bar',
@@ -18,6 +19,8 @@ export class TitleBarComponent implements OnInit {
   faQuotes = faQuoteLeft;
   faCircleHalfStroke = faCircleHalfStroke;
   faEllipsisVertical = faEllipsisVertical;
+
+  constructor(private readonly authorizationService: AuthorizationService) {}
 
   ngOnInit(): void {
     const currentTheme = document.documentElement.getAttribute('data-bs-theme') ?? document.body.getAttribute('data-bs-theme');
@@ -37,6 +40,11 @@ export class TitleBarComponent implements OnInit {
   onThemeSwitchChange(event: Event): void {
     const input = event.target as HTMLInputElement;
     this.setDarkMode(input.checked);
+  }
+
+  onLogout(event: Event): void {
+    event.preventDefault();
+    this.authorizationService.logoutAndRedirect();
   }
 
   private applyTheme(): void {
