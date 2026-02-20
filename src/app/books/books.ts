@@ -3,13 +3,7 @@ import { RouterModule } from '@angular/router';
 import { BookForm } from '../book-form/book-form';
 import { DeleteItem } from '../delete-item/delete-item';
 import { CardComponent } from '../card/card';
-import { DatabaseService } from '../services/database.service';
-
-interface BookDto {
-  id: number;
-  title: string;
-  author: string;
-}
+import { BookDto, BookService } from '../services/book.service';
 
 
 @Component({
@@ -22,14 +16,14 @@ export class Books implements OnInit {
 
   booksToDisplay: BookDto[] = [];
 
-  constructor(private readonly databaseService: DatabaseService) {}
+  constructor(private readonly bookService: BookService) {}
 
   ngOnInit() {
     this.loadBooks();
   }
 
   loadBooks(): void {
-    this.databaseService.getAll<BookDto>('books').subscribe({
+    this.bookService.getBooks().subscribe({
       next: (books) => {
         this.booksToDisplay = [...books].reverse();
       },

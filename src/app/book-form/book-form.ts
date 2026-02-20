@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPenToSquare, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { DatabaseService } from '../services/database.service';
+import { BookService } from '../services/book.service';
 
 interface BookFormInput {
   id: number;
@@ -26,7 +26,7 @@ export class BookForm {
   @Input() bookToEdit: BookFormInput | null = null;
   @Output() bookSaved = new EventEmitter<void>();
 
-  constructor(private readonly databaseService: DatabaseService) {}
+  constructor(private readonly bookService: BookService) {}
 
   openModal(): void {
     if (this.isEditMode && this.bookToEdit) {
@@ -58,7 +58,7 @@ export class BookForm {
     }
 
     if (this.isEditMode && this.bookToEdit) {
-      this.databaseService.update('books', this.bookToEdit.id, { title, author }).subscribe({
+      this.bookService.updateBook(this.bookToEdit.id, { title, author }).subscribe({
         next: (updatedBook) => {
           console.log('Book updated:', updatedBook);
           this.bookSaved.emit();
@@ -69,7 +69,7 @@ export class BookForm {
         }
       });
     } else {
-      this.databaseService.create('books', { title, author }).subscribe({
+      this.bookService.createBook({ title, author }).subscribe({
         next: (newBook) => {
           console.log('New book submitted:', newBook);
           this.bookSaved.emit();

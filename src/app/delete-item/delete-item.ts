@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
-import { DatabaseService } from '../services/database.service';
+import { BookService } from '../services/book.service';
 
 @Component({
   selector: 'delete-item',
@@ -17,7 +17,7 @@ export class DeleteItem {
   @Input({ required: true }) resource!: 'books' | 'quotations';
   @Output() itemDeleted = new EventEmitter<void>();
 
-  constructor(private readonly databaseService: DatabaseService) {}
+  constructor(private readonly bookService: BookService) {}
 
   openModal(): void {
     this.isModalOpen = true;
@@ -28,7 +28,7 @@ export class DeleteItem {
   }
 
   onDelete(): void {
-    this.databaseService.remove(this.resource, this.itemId).subscribe({
+    this.bookService.deleteResource(this.resource, this.itemId).subscribe({
       next: () => {
         this.itemDeleted.emit();
         this.closeModal();
