@@ -36,12 +36,4 @@ export class BookService {
   deleteBook(id: number): Observable<void> {
     return this.databaseService.remove(this.booksResource, id);
   }
-
-  deleteResource(resource: 'books' | 'quotations', id: number): Observable<void> {
-    if (resource === this.booksResource) {
-      return this.deleteBook(id);
-    }
-
-    return this.databaseService.remove(resource, id);
-  }
 }

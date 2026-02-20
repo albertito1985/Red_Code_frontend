@@ -2,13 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { QuoteForm } from '../quote-form/quote-form';
 import { DeleteItem } from '../delete-item/delete-item';
 import { CardComponent } from '../card/card';
-import { DatabaseService } from '../services/database.service';
-
-interface QuoteDto {
-  id: number;
-  quotation: string;
-  author: string;
-}
+import { QuoteDto, QuoteService } from '../services/quote.service';
 
 @Component({
   selector: 'app-quotations',
@@ -19,14 +13,14 @@ interface QuoteDto {
 export class Quotations implements OnInit {
   quotesToDisplay: QuoteDto[] = [];
   
-  constructor(private readonly databaseService: DatabaseService) {}
+  constructor(private readonly quoteService: QuoteService) {}
 
   ngOnInit() {
     this.loadQuotes();
   }
 
   loadQuotes(): void {
-    this.databaseService.getAll<QuoteDto>('quotations').subscribe({
+    this.quoteService.getQuotes().subscribe({
       next: (quotes) => {
         this.quotesToDisplay = [...quotes].reverse();
       },

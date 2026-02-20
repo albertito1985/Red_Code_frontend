@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { BookService } from '../services/book.service';
+import { QuoteService } from '../services/quote.service';
 
 @Component({
   selector: 'delete-item',
@@ -17,7 +18,10 @@ export class DeleteItem {
   @Input({ required: true }) resource!: 'books' | 'quotations';
   @Output() itemDeleted = new EventEmitter<void>();
 
-  constructor(private readonly bookService: BookService) {}
+  constructor(
+    private readonly bookService: BookService,
+    private readonly quoteService: QuoteService
+  ) {}
 
   openModal(): void {
     this.isModalOpen = true;
@@ -28,7 +32,11 @@ export class DeleteItem {
   }
 
   onDelete(): void {
-    this.bookService.deleteResource(this.resource, this.itemId).subscribe({
+    const deleteRequest = this.resource === 'books'
+      ? this.bookService.deleteBook(this.itemId)
+      : this.quoteService.deleteQuote(this.itemId);
+
+    deleteRequest.subscribe({
       next: () => {
         this.itemDeleted.emit();
         this.closeModal();

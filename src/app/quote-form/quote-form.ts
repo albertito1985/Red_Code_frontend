@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPenToSquare, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { DatabaseService } from '../services/database.service';
+import { QuoteService } from '../services/quote.service';
 
 interface QuoteFormInput {
   id: number;
@@ -26,7 +26,7 @@ export class QuoteForm {
   @Input() quoteToEdit: QuoteFormInput | null = null;
   @Output() quoteSaved = new EventEmitter<void>();
 
-  constructor(private readonly databaseService: DatabaseService) {}
+  constructor(private readonly quoteService: QuoteService) {}
 
   openModal(): void {
     if (this.isEditMode && this.quoteToEdit) {
@@ -58,7 +58,7 @@ export class QuoteForm {
     }
 
     if (this.isEditMode && this.quoteToEdit) {
-      this.databaseService.update('quotations', this.quoteToEdit.id, { quotation, author }).subscribe({
+      this.quoteService.updateQuote(this.quoteToEdit.id, { quotation, author }).subscribe({
         next: (updatedQuote) => {
           console.log('Quote updated:', updatedQuote);
           this.quoteSaved.emit();
@@ -69,7 +69,7 @@ export class QuoteForm {
         }
       });
     } else {
-      this.databaseService.create('quotations', { quotation, author }).subscribe({
+      this.quoteService.createQuote({ quotation, author }).subscribe({
         next: (newQuote) => {
           console.log('New quote submitted:', newQuote);
           this.quoteSaved.emit();
