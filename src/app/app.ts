@@ -1,11 +1,12 @@
 import { Component, signal } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { TitleBarComponent } from './title-bar/title-bar';
+import { FooterComponent } from './footer/footer';
 import { filter, startWith } from 'rxjs';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, TitleBarComponent],
+  imports: [RouterOutlet, TitleBarComponent, FooterComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

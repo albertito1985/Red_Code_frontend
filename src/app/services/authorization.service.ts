@@ -26,8 +26,8 @@ export interface AuthorizationResponseDto {
   providedIn: 'root'
 })
 export class AuthorizationService {
-  private readonly loginResource = 'authorization/login';
-  private readonly registerResource = 'authorization/register';
+  private readonly loginResource = 'auth/login';
+  private readonly registerResource = 'auth/register';
   private readonly tokenStorageKey = 'auth_token';
   private readonly refreshTokenStorageKey = 'auth_refresh_token';
 
@@ -51,7 +51,18 @@ export class AuthorizationService {
   }
 
   isAuthenticated(): boolean {
-    return Boolean(this.getToken());
+    const token = this.getToken();
+
+    if (!token) {
+      return false;
+    }
+
+    if (this.isTokenExpired(token)) {
+      this.logout();
+      return false;
+    }
+
+    return true;
   }
 
   getToken(): string | null {
@@ -60,6 +71,28 @@ export class AuthorizationService {
 
   getRefreshToken(): string | null {
     return localStorage.getItem(this.refreshTokenStorageKey);
+  }
+
+  private isTokenExpired(token: string): boolean {
+    try {
+      const [, payload] = token.split('.');
+
+      if (!payload) {
+        return true;
+      }
+
+      const decodedPayload = JSON.parse(atob(payload.replace(/-/g, '+').replace(/_/g, '/')));
+      const exp = decodedPayload?.exp;
+
+      if (typeof exp !== 'number') {
+        return true;
+      }
+
+      const nowInSeconds = Math.floor(Date.now() / 1000);
+      return exp <= nowInSeconds;
+    } catch {
+      return true;
+    }
   }
 
   private storeSession(response: AuthorizationResponseDto): void {
