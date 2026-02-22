@@ -51,7 +51,18 @@ export class DatabaseService {
   }
 
   private buildBaseUrl(): string {
-    const { host, port} = environment.database;
-    return `https://${host}:${port}/api`;
+    const { host, port } = environment.backend;
+    const protocol = environment.production ? 'https' : 'http';
+    const hostWithProtocol = /^https?:\/\//i.test(host) ? host : `${protocol}://${host}`;
+    const url = new URL(hostWithProtocol);
+
+    if (port) {
+      url.port = String(port);
+    }
+
+    const pathname = url.pathname.replace(/\/$/, '');
+    url.pathname = `${pathname}/api`;
+
+    return url.toString().replace(/\/$/, '');
   }
 }

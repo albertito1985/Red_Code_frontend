@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   backend: {
-    host: '',
+    host: 'redcodebackend-production.up.railway.app',
     port: 0
   }
 };
