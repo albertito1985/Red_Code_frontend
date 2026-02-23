@@ -1,8 +1,9 @@
 <div class="item-card d-flex flex-row gap-2 rounded p-3">
   <div class="w-100">
     @if (isBook(item)) {
-      <h2>{{ index + 1 }} <fa-icon [icon]="faBook"></fa-icon> {{ item.title }}</h2>
+      <h2>{{ index + 1 }} <fa-icon [icon]="faBook"></fa-icon></h2>
       <div class="d-flex align-items-center justify-content-between gap-2">
+        <h2>{{ item.title }}</h2>
         {{ item.author }}
         <div>
           <book-form [bookToEdit]="item" (bookSaved)="itemSaved.emit()"></book-form>
