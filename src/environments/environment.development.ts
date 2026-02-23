@@ -1,7 +1,7 @@
 export const environment = {
   production: false,
   backend: {
-    host: 'localhost',
+    host: 'https://localhost',
     port: 7104,
   }
 };
