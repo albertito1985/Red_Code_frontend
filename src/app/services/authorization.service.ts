@@ -78,9 +78,9 @@ export class AuthorizationService {
     return localStorage.getItem(this.tokenStorageKey);
   }
 
-  getRefreshToken(): string | null {
+  /* getRefreshToken(): string | null {
     return localStorage.getItem(this.refreshTokenStorageKey);
-  }
+  } */
 
   private isTokenExpired(token: string): boolean {
     try {
