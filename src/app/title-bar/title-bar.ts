@@ -4,6 +4,7 @@ import { RouterLinkActive } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBook, faQuoteLeft, faCircleHalfStroke, faEllipsisVertical} from '@fortawesome/free-solid-svg-icons';
 import { AuthorizationService } from '../services/authorization.service';
+import { ThemeService } from '../services/theme.service';
 
 @Component({
   selector: 'app-title-bar',
@@ -20,12 +21,13 @@ export class TitleBarComponent implements OnInit {
   faCircleHalfStroke = faCircleHalfStroke;
   faEllipsisVertical = faEllipsisVertical;
 
-  constructor(private readonly authorizationService: AuthorizationService) {}
+  constructor(
+    private readonly authorizationService: AuthorizationService,
+    private readonly themeService: ThemeService
+  ) {}
 
   ngOnInit(): void {
-    const currentTheme = document.documentElement.getAttribute('data-bs-theme') ?? document.body.getAttribute('data-bs-theme');
-    this.isEnabled = currentTheme === 'dark';
-    this.applyTheme();
+    this.isEnabled = this.themeService.isDarkModeEnabled();
   }
 
   toggleMenu(): void {
@@ -34,7 +36,7 @@ export class TitleBarComponent implements OnInit {
 
   setDarkMode(isDarkModeEnabled: boolean): void {
     this.isEnabled = isDarkModeEnabled;
-    this.applyTheme();
+    this.themeService.setDarkMode(this.isEnabled);
   }
 
   onThemeSwitchChange(event: Event): void {
@@ -45,23 +47,5 @@ export class TitleBarComponent implements OnInit {
   onLogout(event: Event): void {
     event.preventDefault();
     this.authorizationService.logoutAndRedirect();
-  }
-
-  private applyTheme(): void {
-    if (this.isEnabled) {
-      this.enableDarkMode();
-    } else {
-      this.disableDarkMode();
-    }
-  }
-
-  private enableDarkMode(): void {
-    document.documentElement.setAttribute('data-bs-theme', 'dark');
-    document.body.setAttribute('data-bs-theme', 'dark');
-  }
-
-  private disableDarkMode(): void {
-    document.documentElement.setAttribute('data-bs-theme', 'light');
-    document.body.setAttribute('data-bs-theme', 'light');
   }
 }

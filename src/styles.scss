@@ -9,3 +9,9 @@
 	--app-border-color-strong: var(--bs-light);
 }
 
+.form-check-input{
+	height: 1.75em;
+	width: 3.5em !important;
+	border-color: var(--app-border-color-strong);
+	background-color: white;
+}

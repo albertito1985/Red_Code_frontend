@@ -28,4 +28,10 @@
             Cancel
         </a>
   </div>
+  <div class="form-switch mt-0 form-check-reverse d-none d-md-flex flex-md-row gap-2">
+    <label class="form-check-label" for="themeSwitchRegisterMd">
+      <fa-icon class="text-body-emphasis" [icon]="faCircleHalfStroke"></fa-icon>
+    </label>
+    <input class="form-check-input" type="checkbox" id="themeSwitchRegisterMd" [checked]="isEnabled" (change)="onThemeSwitchChange($event)">
+  </div>
 </section>
