@@ -1,10 +1,10 @@
 <section class="login-page">
-	<div class="login-card w-100 rounded-4 p-4 p-md-5 d-flex flex-column gap-3 align-items-center">
+	<div class="login-card shadow w-100 rounded-4 p-4 p-md-5 d-flex flex-column gap-3 align-items-center">
 		<div class="d-flex flex-row align-items-center justify-content-between w-100">
-			<h1>Log In</h1>
+			<h1 class="text-body-color">Log In</h1>
 			<div class="w-content form-switch mt-0 form-check-reverse d-flex flex-row align-items-center gap-2">
 				<label class="form-check-label" for="themeSwitchMd">
-					<fa-icon class="text-body-emphasis fs-5" [icon]="faCircleHalfStroke"></fa-icon>
+					<fa-icon class="fs-5" [icon]="faCircleHalfStroke"></fa-icon>
 				</label>
 				<input class="form-check-input mt-0" type="checkbox" id="themeSwitchMd" [checked]="isEnabled" (change)="onThemeSwitchChange($event)">
 			</div>
@@ -21,16 +21,19 @@
 				<input id="password" type="password" class="form-control" placeholder="Enter your password" [(ngModel)]="password" name="password" />
 			</div>
 
-			<button type="submit" class="btn btn-primary w-100 mt-2" [disabled]="isSubmitting">Log In</button>
+			<button type="submit" class="btn btn-secondary w-100 mt-2" [disabled]="isSubmitting">Log In</button>
 		</form>
-
-        <a 
-            class="btn app-nav-btn"
-            routerLink="/register"
-            routerLinkActive="active"
-        >
-            Register
-        </a>
+		<span class="secondary-text d-flex flex-row gap-2 align-items-center">
+			Don't have an account?
+			<a 
+				class="btn app-nav-btn text-dark border-0 m-0 p-0"
+				routerLink="/register"
+				routerLinkActive="active"
+			>
+				Register
+			</a>
+		</span>
+		
 	</div>
 	
 </section>
