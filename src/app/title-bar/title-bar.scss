@@ -10,7 +10,7 @@ header {
 }
 
 :host-context([data-bs-theme='dark']) .navbar {
-	background-color: var(--bsc-primary-30);
+	background-color: var(--bsc-primary-70);
 	border-bottom: 1px solid var(--bs-primary) !important;
 }
 
@@ -26,9 +26,8 @@ header {
 }
 
 .app-nav-btn:hover{
-	border: 1px solid var(--bsc-primary-70);
-	color: var(--bs-light);
-	background-color:var(--bsc-primary-70);
+	border: 1px solid var(--bs-primary);
+	color: var(--bs-primary);
 }
 
 .app-nav-btn.active{

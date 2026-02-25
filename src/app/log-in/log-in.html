@@ -48,7 +48,7 @@
 					#passwordModel="ngModel"
 					[class.is-invalid]="passwordModel.invalid && (passwordModel.touched || isFormSubmitted)"
 				/>
-				<div class="invalid-feedback d-block" *ngIf="passwordModel.invalid && (passwordModel.touched || isFormSubmitted)">
+				<div class="invalid-feedback d-block fw-bold" *ngIf="passwordModel.invalid && (passwordModel.touched || isFormSubmitted)">
 					<span *ngIf="passwordModel.errors?.['required']">Password is required.</span>
 					<span *ngIf="passwordModel.errors?.['minlength']">Password must be at least {{ minPasswordLength }} characters.</span>
 				</div>

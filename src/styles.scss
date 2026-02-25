@@ -26,8 +26,6 @@ h1 {
     color: var(--bsc-primary-70);
 }
 
-
-
 body{
 	background:
 		var(--login-bg-gradient),
@@ -88,6 +86,9 @@ body[data-bs-theme='dark']{
 	tr{
 		border-color:var(--bs-primary)
 	}
+	.invalid-feedback{
+		color:var(--bs-danger);
+	}
 }
 
 .form-check-input{
@@ -106,7 +107,7 @@ body[data-bs-theme='dark']{
 }
 
 .form-control:focus, .form-control{
-	color:var(--bs-light)
+	color:var(--bs-light);
 }
 
 .shadow{
@@ -119,5 +120,5 @@ body[data-bs-theme='dark']{
 }
 
 .table > :not(caption) > * > * {
-color:var(--bsc-primary-70);
+	color:var(--bsc-primary-70);
 }
