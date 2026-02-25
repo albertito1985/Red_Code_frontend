@@ -5,6 +5,10 @@
 	--bs-heading-color: var(--bsc-bg-light);
 }
 
+h1 {
+    color: var(--bs-light) !important;
+}
+
 .text-dark{
 	color: var(--bsc-primary-70) !important;
 }

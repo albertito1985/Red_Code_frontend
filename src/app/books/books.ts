@@ -15,6 +15,7 @@ import { BookDto, BookService } from '../services/book.service';
 export class Books implements OnInit {
 
   booksToDisplay: BookDto[] = [];
+  activeCardId: number | null = null;
 
   constructor(private readonly bookService: BookService) {}
 
@@ -31,6 +32,10 @@ export class Books implements OnInit {
         console.error('Failed to load books', error);
       }
     });
+  }
+
+  onCardTapped(itemId: number): void {
+    this.activeCardId = this.activeCardId === itemId ? null : itemId;
   }
   
 }

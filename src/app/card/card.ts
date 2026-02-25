@@ -27,13 +27,19 @@ interface QuoteCardItem {
 export class CardComponent {
   @Input({ required: true }) index!: number;
   @Input({ required: true }) item!: BookCardItem | QuoteCardItem;
+  @Input() isActive = false;
 
   @Output() itemSaved = new EventEmitter<void>();
   @Output() itemDeleted = new EventEmitter<void>();
+  @Output() cardTapped = new EventEmitter<number>();
 
     faBook = faBook;
     faQuoteLeft = faQuoteLeft;
     faQuoteRight = faQuoteRight;
+
+  onCardTap(): void {
+    this.cardTapped.emit(this.item.id);
+  }
     
   isBook(item: BookCardItem | QuoteCardItem): item is BookCardItem {
     return 'title' in item;

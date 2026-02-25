@@ -36,6 +36,13 @@
 
 <div class="d-md-none d-flex flex-column gap-3">
   @for (quotes of quotesToDisplay; track quotes.id; let index = $index) {
-    <app-card [index]="index" [item]="quotes" (itemSaved)="loadQuotes()" (itemDeleted)="loadQuotes()"></app-card>
+    <app-card
+      [index]="index"
+      [item]="quotes"
+      [isActive]="activeCardId === quotes.id"
+      (cardTapped)="onCardTapped($event)"
+      (itemSaved)="loadQuotes()"
+      (itemDeleted)="loadQuotes()"
+    ></app-card>
   }
 </div>

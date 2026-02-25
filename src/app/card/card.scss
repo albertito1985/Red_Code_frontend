@@ -1,3 +1,8 @@
-.item-card {
-  background-color: var(--bs-secondary-bg);
+:host-context([data-bs-theme='dark']) .item-card {
+  color:var(--bs-light);
+  border: 1px solid var(--bs-primary);
+}
+
+.tappable-card {
+  cursor: pointer;
 }

@@ -1,7 +1,7 @@
-<div class="item-card d-flex flex-row gap-2 rounded p-3">
-  <div class="w-100">
+<div class="">
+  <div class="w-100 d-flex flex-row align-items-center justify-content-between gap-2">
     @if (isBook(item)) {
-      <div class="d-flex flex-row align-items-center justify-content-start gap-4">
+      <div class="w-100 d-flex flex-row align-items-center justify-content-start gap-4 item-card shadow rounded p-3 bg-light tappable-card" (click)="onCardTap()">
         <div class="flex-shrink-0">
           <h2>{{ index + 1 }} <fa-icon [icon]="faBook"></fa-icon></h2>
         </div>
@@ -9,18 +9,20 @@
           <h2>{{ item.title }}</h2>
           {{ item.author }}
         </div>
-        <div>
+        
+      </div>
+      @if (isActive) {
+      <div class="actions-cell">
           <book-form [bookToEdit]="item" (bookSaved)="itemSaved.emit()"></book-form>
           <delete-item [itemId]="item.id" [resource]="'books'" (itemDeleted)="itemDeleted.emit()"></delete-item>
         </div>
-      </div>
-      
+      }
       <div class="d-flex align-items-center justify-content-between gap-2">
-        
         
       </div>
     } @else {
-        <h2 >{{ index + 1 }} <fa-icon [icon]="faQuoteLeft"></fa-icon> {{ item.quotation }} <fa-icon [icon]="faQuoteRight"></fa-icon></h2>    
+      <h2 class="w-100 item-card shadow rounded p-3 bg-light tappable-card" (click)="onCardTap()">{{ index + 1 }} <fa-icon [icon]="faQuoteLeft"></fa-icon> {{ item.quotation }} <fa-icon [icon]="faQuoteRight"></fa-icon></h2>
+      @if (isActive) {
       <div class="d-flex align-items-center justify-content-between gap-2">
         {{ item.author }}
         <div>
@@ -28,6 +30,7 @@
           <delete-item [itemId]="item.id" [resource]="'quotations'" (itemDeleted)="itemDeleted.emit()"></delete-item>
         </div>
       </div>
+      }
     }
   </div>
 </div>

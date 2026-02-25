@@ -12,6 +12,7 @@ import { QuoteDto, QuoteService } from '../services/quote.service';
 })
 export class Quotations implements OnInit {
   quotesToDisplay: QuoteDto[] = [];
+  activeCardId: number | null = null;
   
   constructor(private readonly quoteService: QuoteService) {}
 
@@ -28,6 +29,10 @@ export class Quotations implements OnInit {
         console.error('Failed to load quotations', error);
       }
     });
+  }
+
+  onCardTapped(itemId: number): void {
+    this.activeCardId = this.activeCardId === itemId ? null : itemId;
   }
 
 }

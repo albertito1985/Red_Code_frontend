@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { RouterLinkActive } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -23,7 +23,8 @@ export class TitleBarComponent implements OnInit {
 
   constructor(
     private readonly authorizationService: AuthorizationService,
-    private readonly themeService: ThemeService
+    private readonly themeService: ThemeService,
+    private readonly elementRef: ElementRef<HTMLElement>
   ) {}
 
   ngOnInit(): void {
@@ -32,6 +33,21 @@ export class TitleBarComponent implements OnInit {
 
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  @HostListener('document:click', ['$event'])
+  @HostListener('document:touchstart', ['$event'])
+  onDocumentInteraction(event: Event): void {
+    if (!this.isMenuOpen) {
+      return;
+    }
+
+    const target = event.target as Node | null;
+    const isClickInside = target ? this.elementRef.nativeElement.contains(target) : false;
+
+    if (!isClickInside) {
+      this.isMenuOpen = false;
+    }
   }
 
   setDarkMode(isDarkModeEnabled: boolean): void {

@@ -1,41 +1,53 @@
-<table class="table w-100 table-fixed d-none d-md-table">
-    <colgroup>
-    <col class="col-1">
-    <col class="col-7">
-    <col class="col-3">
-    <col class="col-2">
-  </colgroup>
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Title</th>
-      <th scope="col">Author</th>
-      <th scope="col">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    @for (book of booksToDisplay; track book.id; let index = $index) {
-      <tr class="book-row">
-        <th scope="row">{{ index + 1 }}</th>
-        <td>{{ book.title }}</td>
-        <td>{{ book.author }}</td>
-        <td class="actions-cell">
-          <div class="d-flex h-100 align-items-center justify-content-start gap-2">
-            <book-form [bookToEdit]="book" (bookSaved)="loadBooks()"></book-form>
-            <delete-item [itemId]="book.id" [resource]="'books'" (itemDeleted)="loadBooks()"></delete-item>
-          </div>
-        </td>
+<div class="bg-light p-3 rounded-3 shadow d-none d-md-block">
+  <table class="table w-100 table-fixed d-none d-md-table">
+      <colgroup>
+      <col class="col-1">
+      <col class="col-7">
+      <col class="col-3">
+      <col class="col-2">
+    </colgroup>
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Author</th>
+        <th scope="col">Actions</th>
       </tr>
-    }
-  </tbody>
-  
-</table>
-<div class="container w-100 p-0 py-3 py-md-0 d-md-flex flex-md-row justify-content-md-end">
-  <book-form class="w-md-100" (bookSaved)="loadBooks()"></book-form>
+    </thead>
+    <tbody>
+      @for (book of booksToDisplay; track book.id; let index = $index) {
+        <tr class="book-row">
+          <th scope="row">{{ index + 1 }}</th>
+          <td>{{ book.title }}</td>
+          <td>{{ book.author }}</td>
+          <td class="actions-cell">
+            <div class="d-flex h-100 align-items-center justify-content-start gap-2">
+              <book-form [bookToEdit]="book" (bookSaved)="loadBooks()"></book-form>
+              <delete-item [itemId]="book.id" [resource]="'books'" (itemDeleted)="loadBooks()"></delete-item>
+            </div>
+          </td>
+        </tr>
+      }
+    </tbody>
+    
+  </table>
+  <div class="container w-100 p-0 py-3 py-md-0 d-md-flex flex-md-row justify-content-md-end">
+    <book-form class="w-md-100" (bookSaved)="loadBooks()"></book-form>
+  </div>
 </div>
 
+<div class="container w-100 d-md-none p-0 py-3">
+    <book-form class="w-md-100" (bookSaved)="loadBooks()"></book-form>
+  </div>
 <div class="d-md-none d-flex flex-column gap-3">
   @for (book of booksToDisplay; track book.id; let index = $index) {
-    <app-card [index]="index" [item]="book" (itemSaved)="loadBooks()" (itemDeleted)="loadBooks()"></app-card>
+    <app-card
+      [index]="index"
+      [item]="book"
+      [isActive]="activeCardId === book.id"
+      (cardTapped)="onCardTapped($event)"
+      (itemSaved)="loadBooks()"
+      (itemDeleted)="loadBooks()"
+    ></app-card>
   }
 </div>
