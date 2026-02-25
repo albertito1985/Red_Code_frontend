@@ -19,6 +19,13 @@
 		);
 }
 
+/* .body{
+	background-image : url('/assets/images/9a245ef2-1b22-443f-92fc-e6f637ecf322.png');
+	background-repeat: no-repeat, no-repeat, no-repeat;
+	background-size: cover, cover, cover;
+	background-position: center, center, center;
+} */
+
 .btn-secondary{
 		border-color:var(--bs-primary);
 		background: var(--bsc-primary-70);
@@ -31,13 +38,6 @@
 
 [data-bs-theme='light'] {
 	--app-border-color-strong: var(--bs-dark);
-	
-	/* .btn-secondary{
-		background-color: var(--bsc-primary-70);
-	}
-	.btn-secondary:hover{
-		background-color: var(--bsc-primary-30);
-	} */
 }
 
 [data-bs-theme='dark'] {
@@ -57,7 +57,7 @@
 .form-check-input{
 	height: 1.5em;
 	width: 2.7em !important;
-	border-color: var(--app-border-color-strong);
+	border-color: none;
 	background-color: white;
 }
 

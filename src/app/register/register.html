@@ -1,6 +1,15 @@
 <section class="register-page">
-  <div class="register-card w-100 rounded-4 p-4 p-md-5 d-flex flex-column gap-3 align-items-center">
-    <h1 class="h3 mb-4 text-center">Register</h1>
+  <div class="register-card shadow w-100 rounded-4 p-4 p-md-5 d-flex flex-column gap-3 align-items-center">
+    <div class="d-flex flex-row align-items-center justify-content-between w-100">
+      <h1 class="text-body-color">Register</h1>
+
+      <div class="w-content form-switch mt-0 form-check-reverse d-flex flex-row align-items-center gap-2">
+        <label class="form-check-label" for="themeSwitchRegisterMd">
+          <fa-icon class="fs-5" [icon]="faCircleHalfStroke"></fa-icon>
+        </label>
+        <input class="form-check-input mt-0" type="checkbox" id="themeSwitchRegisterMd" [checked]="isEnabled" (change)="onThemeSwitchChange($event)">
+      </div>
+    </div>
 
     <form class="d-flex flex-column gap-3 w-100" (ngSubmit)="onSubmit()">
       <div>
@@ -18,20 +27,15 @@
         <input id="password" type="password" class="form-control" placeholder="Create a password" [(ngModel)]="password" name="password" />
       </div>
 
-      <button type="submit" class="btn btn-primary w-100 mt-2" [disabled]="isSubmitting">Register</button>
+      <button type="submit" class="btn btn-secondary w-100 mt-2" [disabled]="isSubmitting">Register</button>
     </form>
     <a 
-            class="btn app-nav-btn"
+            class="btn app-nav-btn text-dark"
             routerLink="/login"
             routerLinkActive="active"
         >
             Cancel
         </a>
   </div>
-  <div class="form-switch mt-0 form-check-reverse d-none d-md-flex flex-md-row gap-2">
-    <label class="form-check-label" for="themeSwitchRegisterMd">
-      <fa-icon class="text-body-emphasis" [icon]="faCircleHalfStroke"></fa-icon>
-    </label>
-    <input class="form-check-input" type="checkbox" id="themeSwitchRegisterMd" [checked]="isEnabled" (change)="onThemeSwitchChange($event)">
-  </div>
+  
 </section>

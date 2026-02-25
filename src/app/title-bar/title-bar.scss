@@ -23,3 +23,19 @@ header {
 	top: 0;
 	z-index: 1030;
 }
+
+.navbar{
+	background-color: var(--bs-primary);
+}
+
+.navbar-text{
+	color: var(--bsc-bg-light);
+}
+
+.app-nav-btn.active{
+    background-color: var(--bsc-bg-light);
+    border-color: var(--bsc-bg-light);
+    color: var(--bsc-primary-70);
+    text-decoration: underline;
+    font-weight: 700;
+}

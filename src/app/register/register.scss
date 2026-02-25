@@ -1,13 +1,56 @@
+:host{
+	--primary-rgb-local: var(--bs-primary-rgb);
+	--login-bg-gradient : linear-gradient(rgba(var(--primary-rgb-local),0.5), rgba(var(--primary-rgb-local),0.2), rgba(var(--primary-rgb-local),0.5));
+	--login-bg-gradient-dark :linear-gradient(rgba(var(--primary-rgb-local),0.4), rgba(0,0,0,0.5), rgba(var(--primary-rgb-local),0.7));
+	--bs-heading-color: var(--bsc-bg-light);
+}
+
+.text-dark{
+	color: var(--bsc-primary-70) !important;
+}
+
 .register-page {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem;
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 1.5rem;
+	background:
+		var(--login-bg-gradient),
+		linear-gradient(rgba(225,225,225,0.7), rgba(255,255,255,0.7)),
+		url('/assets/images/9a245ef2-1b22-443f-92fc-e6f637ecf322.png');
+	background-repeat: no-repeat, no-repeat, no-repeat;
+	background-size: cover, cover, cover;
+	background-position: center, center, center;
 }
 
 .register-card {
   width: 100%;
   max-width: 420px;
-  background-color: var(--bs-secondary-bg);
+  background-color: var(--bs-primary);
+	color: var(--bsc-bg-light);
+	border: 1px solid var(--bs-primary)
+}
+
+:host-context([data-bs-theme="dark"]) .register-page{
+	background:
+		var(--login-bg-gradient),
+		linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+		url('/assets/images/9a245ef2-1b22-443f-92fc-e6f637ecf322.png');
+		background-repeat: no-repeat, no-repeat, no-repeat;
+		background-size: cover, cover, cover;
+		background-position: center, center, center;
+	}
+
+  :host-context([data-bs-theme="dark"]) .register-card {
+	background-color: var(--bsc-primary-30);
+	color: var(--bsc-bg-light);
+}
+
+:host-context([data-bs-theme="dark"]) .text-dark{
+	color: var(--bsc-bg-light) !important;
+}
+
+:host-context([data-bs-theme="dark"]) .secondary-text{
+	color: var(--bsc-primary-70) !important;
 }
