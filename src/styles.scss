@@ -97,6 +97,10 @@ body[data-bs-theme='dark']{
 	}
 }
 
+.text-dark{
+	color:var(--bs-light) !important;
+}
+
 .form-check-input{
 	height: 1.5em;
 	width: 2.7em !important;
@@ -112,6 +116,10 @@ body[data-bs-theme='dark']{
 	box-shadow: 0 0 30px rgba(var(--bs-body-color-rgb),0.8) !important;
 }
 
+.form-control::placeholder{
+	color:var(--bsc-primary-30);
+}
+
 .form-control:focus, .form-control{
 	color:var(--bs-light);
 }
@@ -123,6 +131,7 @@ body[data-bs-theme='dark']{
 .form-control {
 	border: 1px solid var(--bs-primary);
 	box-shadow: 0 0 30px rgba(var(--bs-primary-rgb),0.3) !important;
+	color:var(--bsc-primary-70);
 }
 
 .table > :not(caption) > * > * {
