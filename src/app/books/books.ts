@@ -16,6 +16,7 @@ export class Books implements OnInit {
 
   booksToDisplay: BookDto[] = [];
   activeCardId: number | null = null;
+  activeActionRowId: number | null = null;
 
   constructor(private readonly bookService: BookService) {}
 
@@ -36,6 +37,18 @@ export class Books implements OnInit {
 
   onCardTapped(itemId: number): void {
     this.activeCardId = this.activeCardId === itemId ? null : itemId;
+  }
+
+  onActionRowToggle(itemId: number): void {
+    this.activeActionRowId = this.activeActionRowId === itemId ? null : itemId;
+  }
+
+  onActionRowLeave(): void {
+    this.activeActionRowId = null;
+  }
+
+  isActionVisible(itemId: number): boolean {
+    return this.activeActionRowId === itemId;
   }
   
 }

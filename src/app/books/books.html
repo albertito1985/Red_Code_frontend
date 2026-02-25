@@ -2,8 +2,8 @@
   <table class="table w-100 table-fixed d-none d-md-table">
       <colgroup>
       <col class="col-1">
-      <col class="col-7">
-      <col class="col-3">
+      <col class="col-4">
+      <col class="col-2">
       <col class="col-2">
     </colgroup>
     <thead>
@@ -16,12 +16,12 @@
     </thead>
     <tbody>
       @for (book of booksToDisplay; track book.id; let index = $index) {
-        <tr class="book-row">
+        <tr class="book-row" (click)="onActionRowToggle(book.id)" (mouseleave)="onActionRowLeave()">
           <th scope="row">{{ index + 1 }}</th>
           <td>{{ book.title }}</td>
           <td>{{ book.author }}</td>
-          <td class="actions-cell">
-            <div class="d-flex h-100 align-items-center justify-content-start gap-2">
+          <td class="actions-cell" [class.actions-visible]="isActionVisible(book.id)">
+            <div class="d-flex h-100 align-items-center justify-content-start gap-2" (click)="$event.stopPropagation()">
               <book-form [bookToEdit]="book" (bookSaved)="loadBooks()"></book-form>
               <delete-item [itemId]="book.id" [resource]="'books'" (itemDeleted)="loadBooks()"></delete-item>
             </div>

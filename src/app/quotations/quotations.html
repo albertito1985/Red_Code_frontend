@@ -1,3 +1,4 @@
+<div class="bg-light p-3 rounded-3 shadow d-none d-md-block">
 <table class="table w-100 table-fixed d-none d-md-table">
     <colgroup>
     <col class="col-1">
@@ -15,12 +16,12 @@
   </thead>
   <tbody>
     @for (quotes of quotesToDisplay; track quotes.id; let index = $index) {
-      <tr class="quote-row">
+      <tr class="quote-row" (click)="onActionRowToggle(quotes.id)" (mouseleave)="onActionRowLeave()">
         <th scope="row">{{ index + 1 }}</th>
         <td>{{ quotes.quotation }}</td>
         <td>{{ quotes.author }}</td>
-        <td class="actions-cell">
-          <div class="d-flex h-100 align-items-center justify-content-start gap-2">
+        <td class="actions-cell" [class.actions-visible]="isActionVisible(quotes.id)">
+          <div class="d-flex h-100 align-items-center justify-content-start gap-2" (click)="$event.stopPropagation()">
             <quote-form [quoteToEdit]="quotes" (quoteSaved)="loadQuotes()"></quote-form>
             <delete-item [itemId]="quotes.id" [resource]="'quotations'" (itemDeleted)="loadQuotes()"></delete-item>
           </div>
@@ -31,6 +32,11 @@
   
 </table>
 <div class="container w-100 p-0 py-3 py-md-0 d-md-flex flex-md-row justify-content-md-end">
+  <quote-form class="w-md-100" (quoteSaved)="loadQuotes()"></quote-form>
+</div>
+</div>
+
+<div class="container w-100 d-md-none p-0 py-3">
   <quote-form class="w-md-100" (quoteSaved)="loadQuotes()"></quote-form>
 </div>
 

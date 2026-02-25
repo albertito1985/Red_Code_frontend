@@ -13,6 +13,7 @@ import { QuoteDto, QuoteService } from '../services/quote.service';
 export class Quotations implements OnInit {
   quotesToDisplay: QuoteDto[] = [];
   activeCardId: number | null = null;
+  activeActionRowId: number | null = null;
   
   constructor(private readonly quoteService: QuoteService) {}
 
@@ -33,6 +34,18 @@ export class Quotations implements OnInit {
 
   onCardTapped(itemId: number): void {
     this.activeCardId = this.activeCardId === itemId ? null : itemId;
+  }
+
+  onActionRowToggle(itemId: number): void {
+    this.activeActionRowId = this.activeActionRowId === itemId ? null : itemId;
+  }
+
+  onActionRowLeave(): void {
+    this.activeActionRowId = null;
+  }
+
+  isActionVisible(itemId: number): boolean {
+    return this.activeActionRowId === itemId;
   }
 
 }

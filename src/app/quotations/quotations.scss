@@ -1,9 +1,5 @@
-.table{
-    --bs-table-bg: none !important;
-}
-
-.table-fixed {
-  table-layout: fixed;
+.table {
+  --bs-table-bg: none;
 }
 
 .actions-cell {
@@ -11,11 +7,15 @@
   cursor: pointer;
 }
 
-tr:hover{
-  background-color: var(--bs-table-bg) !important;
+.actions-cell.actions-visible {
+  opacity: 1;
 }
 
 /* Show when row is hovered */
 .quote-row:hover .actions-cell {
   opacity: 1;
+}
+
+.book-card{
+  background-color: var(--bs-secondary-bg);
 }
