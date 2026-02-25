@@ -1,5 +1,5 @@
 <header>
-<nav class="navbar navbar-expand-md border-bottom p-3">
+<nav class="navbar navbar-expand-md shadow p-3">
   <!-- Button for toggling the menu on smaller screens -->
   <button class="navbar-toggler border-0 ms-auto" type="button" (click)="toggleMenu()" aria-controls="navbarToggler" [attr.aria-expanded]="isMenuOpen" aria-label="Toggle navigation">
     <fa-icon class="text-body-emphasis" [icon]="faEllipsisVertical"></fa-icon>
@@ -47,12 +47,12 @@
         </button>
       </div>
 
-      <div class="form-switch mt-0 form-check-reverse d-none d-md-flex flex-md-row align-items-md-center gap-2">
-        <label class="form-check-label" for="themeSwitchMd">
-          <fa-icon class="text-body-emphasis fs-5" [icon]="faCircleHalfStroke"></fa-icon>
-        </label>
-        <input class="form-check-input mt-0" type="checkbox" id="themeSwitchMd" [checked]="isEnabled" (change)="onThemeSwitchChange($event)">
-      </div>
+      <div class="w-content form-switch mt-0 form-check-reverse d-flex flex-row align-items-center gap-2">
+				<label class="form-check-label" for="themeSwitchMd">
+					<fa-icon class="fs-5" [icon]="faCircleHalfStroke"></fa-icon>
+				</label>
+				<input class="form-check-input mt-0" type="checkbox" id="themeSwitchMd" [checked]="isEnabled" (change)="onThemeSwitchChange($event)">
+			</div>
     </div>
     <div class="d-md-none w-100 d-flex justify-content-center mt-3">
       <a href="#" class="link" (click)="onLogout($event)">Log out</a>
@@ -61,3 +61,4 @@
   </div>
 </nav>
 </header>
+

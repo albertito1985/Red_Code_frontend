@@ -1,7 +1,7 @@
 <section class="login-page">
 	<div class="login-card shadow w-100 rounded-4 p-4 p-md-5 d-flex flex-column gap-3 align-items-center">
 		<div class="d-flex flex-row align-items-center justify-content-between w-100">
-			<h1 class="text-body-color">Log in</h1>
+			<h1>Log in</h1>
 
 			<div class="w-content form-switch mt-0 form-check-reverse d-flex flex-row align-items-center gap-2">
 				<label class="form-check-label" for="themeSwitchMd">
@@ -11,18 +11,54 @@
 			</div>
 		</div>
 
-		<form class="d-flex flex-column gap-3 w-100" (ngSubmit)="onSubmit()">
+		<form class="d-flex flex-column gap-3 w-100" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" novalidate>
 			<div>
 				<label for="email" class="form-label">Email</label>
-				<input id="email" type="email" class="form-control" placeholder="name@example.com" [(ngModel)]="email" name="email" />
+				<input
+					id="email"
+					type="email"
+					class="form-control"
+					placeholder="name@example.com"
+					[(ngModel)]="email"
+					(ngModelChange)="clearLoginError()"
+					name="email"
+					required
+					email
+					#emailModel="ngModel"
+					[class.is-invalid]="emailModel.invalid && (emailModel.touched || isFormSubmitted)"
+				/>
+				<div class="invalid-feedback d-block fw-bold" *ngIf="emailModel.invalid && (emailModel.touched || isFormSubmitted)">
+					<span *ngIf="emailModel.errors?.['required']">Email is required.</span>
+					<span *ngIf="emailModel.errors?.['email']">Please enter a valid email address.</span>
+				</div>
 			</div>
 
 			<div >
 				<label for="password" class="form-label">Password</label>
-				<input id="password" type="password" class="form-control" placeholder="Enter your password" [(ngModel)]="password" name="password" />
+				<input
+					id="password"
+					type="password"
+					class="form-control"
+					placeholder="Enter your password"
+					[(ngModel)]="password"
+					(ngModelChange)="clearLoginError()"
+					name="password"
+					required
+					minlength="6"
+					#passwordModel="ngModel"
+					[class.is-invalid]="passwordModel.invalid && (passwordModel.touched || isFormSubmitted)"
+				/>
+				<div class="invalid-feedback d-block" *ngIf="passwordModel.invalid && (passwordModel.touched || isFormSubmitted)">
+					<span *ngIf="passwordModel.errors?.['required']">Password is required.</span>
+					<span *ngIf="passwordModel.errors?.['minlength']">Password must be at least {{ minPasswordLength }} characters.</span>
+				</div>
 			</div>
 
-			<button type="submit" class="btn btn-secondary w-100 mt-2" [disabled]="isSubmitting">Log In</button>
+			<div class="alert alert-danger py-2 mb-0" role="alert" *ngIf="loginErrorMessage">
+				{{ loginErrorMessage }}
+			</div>
+
+			<button type="submit" class="btn btn-secondary w-100 mt-2" [disabled]="isSubmitting || loginForm.invalid">Log In</button>
 		</form>
 		<span class="secondary-text d-flex flex-row gap-2 align-items-center">
 			Don't have an account?

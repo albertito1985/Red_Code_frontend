@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { RouterLinkActive } from '@angular/router';
@@ -10,7 +11,7 @@ import { ThemeService } from '../services/theme.service';
 
 @Component({
   selector: 'app-register',
-  imports: [FormsModule, RouterModule, RouterLinkActive, FontAwesomeModule],
+  imports: [CommonModule, FormsModule, RouterModule, RouterLinkActive, FontAwesomeModule],
   templateUrl: './register.html',
   styleUrl: './register.scss',
 })
@@ -19,7 +20,10 @@ export class Register implements OnInit {
   email = '';
   password = '';
   isSubmitting = false;
+  isFormSubmitted = false;
+  registrationErrorMessage = '';
   isEnabled = false;
+  minPasswordLength = 6;
   faCircleHalfStroke = faCircleHalfStroke;
 
   constructor(
@@ -32,12 +36,19 @@ export class Register implements OnInit {
     this.isEnabled = this.themeService.isDarkModeEnabled();
   }
 
-  onSubmit(): void {
+  onSubmit(form: NgForm): void {
+    this.isFormSubmitted = true;
+    this.registrationErrorMessage = '';
+
+    if (form.invalid || this.isSubmitting) {
+      return;
+    }
+
     const name = this.name.trim();
     const email = this.email.trim();
     const password = this.password.trim();
 
-    if (!name || !email || !password || this.isSubmitting) {
+    if (!name || !email || !password) {
       return;
     }
 
@@ -50,9 +61,14 @@ export class Register implements OnInit {
       },
       error: (error) => {
         this.isSubmitting = false;
+        this.registrationErrorMessage = 'Registration failed. Please check your details and try again.';
         console.error('Registration failed', error);
       }
     });
+  }
+
+  clearRegistrationError(): void {
+    this.registrationErrorMessage = '';
   }
 
   onThemeSwitchChange(event: Event): void {

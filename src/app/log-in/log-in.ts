@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { RouterLinkActive } from '@angular/router';
@@ -10,7 +11,7 @@ import { ThemeService } from '../services/theme.service';
 
 @Component({
   selector: 'app-log-in',
-  imports: [FormsModule, RouterModule, RouterLinkActive, FontAwesomeModule],
+  imports: [CommonModule, FormsModule, RouterModule, RouterLinkActive, FontAwesomeModule],
   templateUrl: './log-in.html',
   styleUrl: './log-in.scss',
 })
@@ -18,7 +19,10 @@ export class LogIn implements OnInit {
   email = '';
   password = '';
   isSubmitting = false;
+  isFormSubmitted = false;
+  loginErrorMessage = '';
   isEnabled = false;
+  minPasswordLength = 6;
   faCircleHalfStroke = faCircleHalfStroke;
 
   constructor(
@@ -31,11 +35,18 @@ export class LogIn implements OnInit {
     this.isEnabled = this.themeService.isDarkModeEnabled();
   }
 
-  onSubmit(): void {
+  onSubmit(form: NgForm): void {
+    this.isFormSubmitted = true;
+    this.loginErrorMessage = '';
+
+    if (form.invalid || this.isSubmitting) {
+      return;
+    }
+
     const email = this.email.trim();
     const password = this.password.trim();
 
-    if (!email || !password || this.isSubmitting) {
+    if (!email || !password) {
       return;
     }
 
@@ -48,9 +59,14 @@ export class LogIn implements OnInit {
       },
       error: (error) => {
         this.isSubmitting = false;
+        this.loginErrorMessage = 'Invalid email or password. Please try again.';
         console.error('Login failed', error);
       }
     });
+  }
+
+  clearLoginError(): void {
+    this.loginErrorMessage = '';
   }
 
   onThemeSwitchChange(event: Event): void {
