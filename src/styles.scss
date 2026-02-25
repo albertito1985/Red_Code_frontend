@@ -134,6 +134,15 @@ body[data-bs-theme='dark']{
 	color:var(--bsc-primary-70);
 }
 
+/* Chrome / Xiaomi / Android */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill {
+  -webkit-text-fill-color: var(--bsc-primary-70); /* TEXT COLOR */
+  transition: background-color 9999s ease-in-out 0s;
+}
+
 .table > :not(caption) > * > * {
 	color:var(--bsc-primary-70);
 }
