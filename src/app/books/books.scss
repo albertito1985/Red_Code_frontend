@@ -5,15 +5,18 @@
 .actions-cell {
   opacity: 0;
   cursor: pointer;
+  pointer-events: none;
 }
 
 .actions-cell.actions-visible {
   opacity: 1;
+  pointer-events: auto;
 }
 
 /* Show when row is hovered */
 .book-row:hover .actions-cell {
   opacity: 1;
+  pointer-events: auto;
 }
 
 .book-card{
