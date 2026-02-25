@@ -95,6 +95,13 @@ body[data-bs-theme='dark']{
 	.modal-content {
 		color:var(--bsc-bg-light);
 	}
+
+	input:-webkit-autofill,
+	input:-webkit-autofill:hover,
+	input:-webkit-autofill:focus,
+	textarea:-webkit-autofill, input {
+	-webkit-text-fill-color: var(--bs-light); /* TEXT COLOR */
+	}
 }
 
 .text-dark{
