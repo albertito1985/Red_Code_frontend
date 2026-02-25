@@ -96,11 +96,19 @@ body[data-bs-theme='dark']{
 		color:var(--bsc-bg-light);
 	}
 
+	.form-control {
+		color:var(--bs-light);
+	}
+
+	.form-control:focus{
+		color:var(--bs-light);
+	}
+
 	input:-webkit-autofill,
 	input:-webkit-autofill:hover,
 	input:-webkit-autofill:focus,
-	textarea:-webkit-autofill, input {
-	-webkit-text-fill-color: var(--bs-light); /* TEXT COLOR */
+	textarea:-webkit-autofill{
+	-webkit-text-fill-color: var(--bsc-primary-30);
 	}
 }
 
@@ -127,8 +135,8 @@ body[data-bs-theme='dark']{
 	color:var(--bsc-primary-30);
 }
 
-.form-control:focus, .form-control{
-	color:var(--bs-light);
+.form-control:focus{
+	color:var(--bsc-primary-70);
 }
 
 .shadow{
@@ -145,9 +153,8 @@ body[data-bs-theme='dark']{
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
-textarea:-webkit-autofill, input {
-  -webkit-text-fill-color: var(--bsc-primary-70); /* TEXT COLOR */
-  transition: background-color 9999s ease-in-out 0s;
+textarea:-webkit-autofill{
+  -webkit-text-fill-color: var(--bsc-primary-30);
 }
 
 .table > :not(caption) > * > * {
