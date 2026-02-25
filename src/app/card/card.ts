@@ -3,7 +3,7 @@ import { BookForm } from '../book-form/book-form';
 import { DeleteItem } from '../delete-item/delete-item';
 import { QuoteForm } from '../quote-form/quote-form';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faBook, faQuoteLeft, faQuoteRight} from '@fortawesome/free-solid-svg-icons';
+import { faBook, faQuoteLeft} from '@fortawesome/free-solid-svg-icons';
 
 
 interface BookCardItem {
@@ -35,7 +35,6 @@ export class CardComponent {
 
     faBook = faBook;
     faQuoteLeft = faQuoteLeft;
-    faQuoteRight = faQuoteRight;
 
   onCardTap(): void {
     this.cardTapped.emit(this.item.id);
