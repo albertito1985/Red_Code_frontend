@@ -1,6 +1,11 @@
 # Books and Quotes
 This is the front-end from a web application to handle CRUD functionality for a list of books and quotations.
-The webb app is responsive and have a collapsable menu and dark mode.
+
+## Features
+- Responsive
+- Collapsable menu
+- Dark mode
+- Font Awesome Icons
 
 ## Technologies
 - Angular
