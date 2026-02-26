@@ -1,4 +1,4 @@
-# Books and Quotes
+# Books and Quotes Front-end
 This is the front-end from a web application to handle CRUD functionality for a list of books and quotations.
 
 ## Features
