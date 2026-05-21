@@ -56,9 +56,9 @@ export class DatabaseService {
     const hostWithProtocol = /^https?:\/\//i.test(host) ? host : `${protocol}://${host}`;
     const url = new URL(hostWithProtocol);
 
-    if (port) {
+    /* if (port) {
       url.port = String(port);
-    }
+    } */
 
     const pathname = url.pathname.replace(/\/$/, '');
     url.pathname = `${pathname}/api`;
