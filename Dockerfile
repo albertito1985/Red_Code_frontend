@@ -18,7 +18,7 @@ RUN npm run build
 
 FROM nginx:1.27-alpine AS runtime
 
-COPY --from=build /app/dist/red-code-frontend/ /usr/share/nginx/html/
+COPY --from=build /app/dist/red-code-frontend/browser /usr/share/nginx/html/
 
 RUN cat <<'EOF' >/etc/nginx/conf.d/default.conf
 server {
