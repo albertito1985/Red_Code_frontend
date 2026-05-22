@@ -26,6 +26,11 @@ header {
 }
 
 .app-nav-btn:hover{
+	border: 1px solid var(--bsc-primary-70);
+	color: var(--bsc-primary-70);
+}
+
+:host-context([data-bs-theme="dark"]) .app-nav-btn:hover {
 	border: 1px solid var(--bs-primary);
 	color: var(--bs-primary);
 }
